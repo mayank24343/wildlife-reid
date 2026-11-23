@@ -1,0 +1,9 @@
+version,scheme,MAP@5,hyena,leopard,known,new
+V1 raw cosine,rand,0.8347,0.8356,0.8344,0.7874,0.9048
+V2 hand-tuned blend,rand,0.8963,0.8709,0.9055,0.86,0.9501
+V1 raw cosine,hard,0.6941,0.6043,0.7268,0.5234,0.919
+V2 hand-tuned blend,hard,0.751,0.6296,0.7952,0.6127,0.9331
+V4 stage 1 (learned ranker + P(new)),rand,0.9069,0.8853,0.9148,0.8798,0.9471
+V4 stage 1 (learned ranker + P(new)),hard,0.7767,0.6838,0.8106,0.6454,0.9498
+V4 stage 2 (+ transductive neighbours),rand,0.9118,0.8979,0.9169,0.8882,0.947
+V4 stage 2 (+ transductive neighbours),hard,0.77,0.7044,0.7939,0.6322,0.9516
