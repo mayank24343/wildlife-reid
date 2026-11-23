@@ -1,0 +1,5 @@
+reid_student_data_main/
+sift_features_test.npz/
+sift_features_train.npz/
+train_images_hyena/
+train_images_leopard/
