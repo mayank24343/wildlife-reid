@@ -1,14 +1,14 @@
 How 'easy' are the queries?  (best gallery cosine / best LDA-space cosine / best RANSAC inliers of each query's top candidates)
 Quantiles 10/25/50/75/90.  Compare the TEST rows with the CV rows: the closer scheme is the more realistic validation.
 
-hyena    rand  all queries n= 1912 | cos  0.137  0.168  0.292  0.524  0.718 | lda  0.170  0.212  0.361  0.575  0.760 | inl  3.000  3.000  4.000 18.000 67.000
-hyena    rand  known only  n= 1405 | cos  0.173  0.245  0.407  0.594  0.788 | lda  0.214  0.301  0.464  0.629  0.795 | inl  3.000  4.000  7.000 29.000 89.600
-hyena    hard  all queries n= 1912 | cos  0.125  0.139  0.160  0.196  0.263 | lda  0.157  0.173  0.204  0.260  0.368 | inl  2.000  3.000  4.000  4.000 13.000
-hyena    hard  known only  n= 1226 | cos  0.129  0.144  0.167  0.215  0.293 | lda  0.163  0.183  0.222  0.296  0.403 | inl  3.000  3.000  4.000  5.000 19.000
-hyena    test  all queries n= 1217 | cos  0.139  0.161  0.238  0.427  0.579 | lda  0.171  0.201  0.292  0.499  0.652 | inl  3.000  3.000  4.000 10.000 28.000
+hyena    rand  all queries n= 1912 | cos  0.137  0.168  0.292  0.524  0.718 | lda  0.180  0.221  0.371  0.586  0.768 | inl  3.000  3.000  4.000 18.000 67.000
+hyena    rand  known only  n= 1405 | cos  0.173  0.245  0.407  0.594  0.788 | lda  0.219  0.314  0.478  0.641  0.802 | inl  3.000  4.000  7.000 29.000 89.600
+hyena    hard  all queries n= 1912 | cos  0.125  0.139  0.160  0.196  0.263 | lda  0.165  0.182  0.215  0.275  0.390 | inl  3.000  3.000  4.000  4.000 13.000
+hyena    hard  known only  n= 1226 | cos  0.129  0.144  0.167  0.215  0.293 | lda  0.171  0.192  0.236  0.316  0.427 | inl  3.000  3.000  4.000  5.750 19.000
+hyena    test  all queries n= 1217 | cos  0.139  0.161  0.238  0.427  0.579 | lda  0.178  0.211  0.304  0.509  0.660 | inl  3.000  3.000  4.000 10.000 28.000
 
-leopard  rand  all queries n= 5251 | cos  0.154  0.183  0.273  0.553  0.790 | lda  0.189  0.224  0.321  0.597  0.796 | inl  3.000  3.000  5.000 43.000 132.000
-leopard  rand  known only  n= 2874 | cos  0.223  0.327  0.516  0.732  0.863 | lda  0.257  0.362  0.547  0.739  0.859 | inl  4.000  9.000 34.000 96.000 217.000
-leopard  hard  all queries n= 5251 | cos  0.154  0.175  0.211  0.281  0.375 | lda  0.186  0.212  0.256  0.336  0.435 | inl  3.000  3.000  4.000 11.000 29.000
-leopard  hard  known only  n= 2846 | cos  0.172  0.197  0.253  0.332  0.414 | lda  0.205  0.238  0.305  0.393  0.476 | inl  3.000  4.000  9.000 21.000 41.000
-leopard  test  all queries n= 1574 | cos  0.186  0.213  0.302  0.514  0.658 | lda  0.219  0.256  0.345  0.566  0.707 | inl  3.000  4.000  8.000 31.000 64.000
+leopard  rand  all queries n= 5251 | cos  0.154  0.183  0.273  0.553  0.790 | lda  0.207  0.245  0.353  0.617  0.805 | inl  3.000  3.000  5.000 43.000 132.000
+leopard  rand  known only  n= 2874 | cos  0.223  0.327  0.516  0.732  0.863 | lda  0.269  0.376  0.559  0.746  0.861 | inl  4.000 10.000 34.000 96.000 217.000
+leopard  hard  all queries n= 5251 | cos  0.154  0.175  0.211  0.281  0.375 | lda  0.200  0.228  0.275  0.359  0.460 | inl  3.000  3.000  4.000 12.000 29.000
+leopard  hard  known only  n= 2846 | cos  0.172  0.197  0.253  0.332  0.414 | lda  0.217  0.253  0.322  0.418  0.499 | inl  3.000  4.000  9.000 21.000 41.000
+leopard  test  all queries n= 1574 | cos  0.186  0.213  0.302  0.514  0.658 | lda  0.227  0.268  0.359  0.578  0.717 | inl  3.000  4.000  8.000 31.000 64.000
