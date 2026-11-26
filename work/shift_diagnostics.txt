@@ -1,0 +1,41 @@
+Shift report: quantiles (10/50/90 %). KS = distance of the top-1 cosine to the test distribution.
+hyena    test   all   n= 1217 | top1 cos [0.139 0.238 0.579] | q2q1 [0.145 0.33  0.731] | q2q3 [0.134 0.233 0.515] | top1 learned [0.171 0.292 0.652]
+hyena    m0     all   n= 1907 | top1 cos [0.128 0.22  0.564] | q2q1 [0.119 0.29  0.792] | q2q3 [0.11  0.201 0.542] | top1 learned [0.158 0.277 0.599]
+hyena    m0     known n= 1331 | top1 cos [0.154 0.308 0.601] | q2q1 [0.115 0.195 0.777] | q2q3 [0.106 0.151 0.462] | top1 learned [0.19  0.379 0.636]
+hyena    m0     new   n=  576 | top1 cos [0.116 0.144 0.191] | q2q1 [0.177 0.478 0.814] | q2q3 [0.144 0.345 0.603] | top1 learned [0.143 0.179 0.241]
+hyena    m0     KS(top-1 cosine, all queries vs test) = 0.078   | mean pool size per fold 476 vs test 1217
+hyena    m1     all   n= 1904 | top1 cos [0.128 0.199 0.535] | q2q1 [0.119 0.294 0.776] | q2q3 [0.109 0.206 0.55 ] | top1 learned [0.162 0.251 0.59 ]
+hyena    m1     known n= 1305 | top1 cos [0.143 0.277 0.572] | q2q1 [0.113 0.209 0.753] | q2q3 [0.105 0.158 0.512] | top1 learned [0.178 0.337 0.622]
+hyena    m1     new   n=  599 | top1 cos [0.117 0.145 0.199] | q2q1 [0.165 0.428 0.817] | q2q3 [0.138 0.319 0.63 ] | top1 learned [0.149 0.181 0.261]
+hyena    m1     KS(top-1 cosine, all queries vs test) = 0.103   | mean pool size per fold 476 vs test 1217
+hyena    m2     all   n= 1910 | top1 cos [0.126 0.201 0.54 ] | q2q1 [0.122 0.305 0.779] | q2q3 [0.11  0.21  0.548] | top1 learned [0.159 0.256 0.59 ]
+hyena    m2     known n= 1334 | top1 cos [0.141 0.277 0.587] | q2q1 [0.118 0.231 0.782] | q2q3 [0.107 0.166 0.507] | top1 learned [0.176 0.338 0.629]
+hyena    m2     new   n=  576 | top1 cos [0.116 0.146 0.204] | q2q1 [0.173 0.408 0.763] | q2q3 [0.144 0.309 0.594] | top1 learned [0.144 0.18  0.264]
+hyena    m2     KS(top-1 cosine, all queries vs test) = 0.098   | mean pool size per fold 477 vs test 1217
+hyena    s0     all   n= 1909 | top1 cos [0.134 0.25  0.58 ] | q2q1 [0.119 0.266 0.792] | q2q3 [0.109 0.188 0.518] | top1 learned [0.162 0.304 0.619]
+hyena    s0     known n= 1332 | top1 cos [0.162 0.361 0.61 ] | q2q1 [0.114 0.191 0.81 ] | q2q3 [0.105 0.152 0.506] | top1 learned [0.195 0.419 0.646]
+hyena    s0     new   n=  577 | top1 cos [0.119 0.148 0.208] | q2q1 [0.167 0.392 0.721] | q2q3 [0.14  0.284 0.537] | top1 learned [0.146 0.185 0.272]
+hyena    s0     KS(top-1 cosine, all queries vs test) = 0.038   | mean pool size per fold 477 vs test 1217
+
+leopard  test   all   n= 1574 | top1 cos [0.186 0.302 0.658] | q2q1 [0.172 0.348 0.814] | q2q3 [0.156 0.266 0.617] | top1 learned [0.227 0.359 0.717]
+leopard  m0     all   n= 5206 | top1 cos [0.153 0.243 0.632] | q2q1 [0.17  0.485 0.87 ] | q2q3 [0.153 0.369 0.726] | top1 learned [0.212 0.331 0.683]
+leopard  m0     known n= 3628 | top1 cos [0.16  0.325 0.696] | q2q1 [0.168 0.469 0.874] | q2q3 [0.152 0.355 0.734] | top1 learned [0.242 0.396 0.724]
+leopard  m0     new   n= 1578 | top1 cos [0.147 0.187 0.262] | q2q1 [0.176 0.517 0.856] | q2q3 [0.157 0.402 0.699] | top1 learned [0.191 0.243 0.337]
+leopard  m0     KS(top-1 cosine, all queries vs test) = 0.186   | mean pool size per fold 1301 vs test 1574
+leopard  m1     all   n= 5204 | top1 cos [0.153 0.238 0.579] | q2q1 [0.17  0.505 0.874] | q2q3 [0.153 0.385 0.737] | top1 learned [0.204 0.317 0.645]
+leopard  m1     known n= 3623 | top1 cos [0.16  0.301 0.626] | q2q1 [0.168 0.505 0.877] | q2q3 [0.151 0.383 0.752] | top1 learned [0.228 0.39  0.694]
+leopard  m1     new   n= 1581 | top1 cos [0.148 0.184 0.265] | q2q1 [0.178 0.506 0.863] | q2q3 [0.159 0.39  0.69 ] | top1 learned [0.188 0.237 0.337]
+leopard  m1     KS(top-1 cosine, all queries vs test) = 0.190   | mean pool size per fold 1301 vs test 1574
+leopard  m2     all   n= 5203 | top1 cos [0.159 0.255 0.606] | q2q1 [0.175 0.489 0.873] | q2q3 [0.157 0.368 0.731] | top1 learned [0.208 0.328 0.659]
+leopard  m2     known n= 3627 | top1 cos [0.171 0.337 0.653] | q2q1 [0.173 0.479 0.876] | q2q3 [0.156 0.361 0.746] | top1 learned [0.233 0.404 0.698]
+leopard  m2     new   n= 1576 | top1 cos [0.149 0.187 0.262] | q2q1 [0.181 0.517 0.867] | q2q3 [0.159 0.388 0.693] | top1 learned [0.189 0.244 0.331]
+leopard  m2     KS(top-1 cosine, all queries vs test) = 0.158   | mean pool size per fold 1300 vs test 1574
+leopard  s0     all   n= 5214 | top1 cos [0.168 0.315 0.622] | q2q1 [0.169 0.463 0.875] | q2q3 [0.152 0.346 0.728] | top1 learned [0.212 0.379 0.669]
+leopard  s0     known n= 3629 | top1 cos [0.219 0.413 0.656] | q2q1 [0.168 0.439 0.88 ] | q2q3 [0.152 0.331 0.743] | top1 learned [0.26  0.491 0.702]
+leopard  s0     new   n= 1585 | top1 cos [0.148 0.187 0.261] | q2q1 [0.17  0.503 0.847] | q2q3 [0.154 0.38  0.694] | top1 learned [0.192 0.239 0.325]
+leopard  s0     KS(top-1 cosine, all queries vs test) = 0.084   | mean pool size per fold 1303 vs test 1574
+
+
+               cv   hat    lo    hi        ks fit_ok       use
+hyena    0.305117  0.19  0.17  0.22  0.038021   True  0.305117
+leopard  0.303452  0.04  0.02  0.08  0.071437   True  0.303452

@@ -1,0 +1,564 @@
+DATA_DIR: C:/Users/anupd/OneDrive/Desktop/ml/reid_student_data_main | folds: 4 | new-share target: 0.3 | FAST: False
+(7163, 4) (2791, 3) (7163, 2152) (2791, 2152)
+         size  nunique
+species               
+hyena    1912      205
+leopard  5251      345
+identities with a single training image: 102
+[     4s] validation folds ('m0', 'm1', 'm2', 's0'): leakage audit PASSED (disjoint; held-out identities absent from gallery; no same-identity pair above the identity's theta)
+[     4s] CV scheme m0: queries/fold [1451, 1791, 1957, 1914] | new share hyena 30.2%, leopard 30.3% | never-validated images 50
+[     4s] CV scheme m1: queries/fold [1760, 1517, 1380, 2451] | new share hyena 31.5%, leopard 30.4% | never-validated images 55
+[     4s] CV scheme m2: queries/fold [1582, 1707, 1820, 2004] | new share hyena 30.2%, leopard 30.3% | never-validated images 50
+[     4s] CV scheme s0: queries/fold [1922, 1683, 1703, 1815] | new share hyena 30.2%, leopard 30.4% | never-validated images 40
+hyena    TEST        top-1 quantiles [0.256 0.276 0.32  0.404 0.6   0.712 0.767 0.852]  share > 0.8: 0.025
+hyena    m0          top-1 quantiles [0.248 0.271 0.31  0.394 0.572 0.711 0.779 0.847]  share > 0.8: 0.026 | KS vs test 0.049
+hyena    m1          top-1 quantiles [0.254 0.275 0.313 0.385 0.537 0.686 0.745 0.823]  share > 0.8: 0.018 | KS vs test 0.084
+hyena    m2          top-1 quantiles [0.245 0.268 0.31  0.383 0.547 0.694 0.762 0.836]  share > 0.8: 0.022 | KS vs test 0.068
+hyena    s0          top-1 quantiles [0.253 0.276 0.318 0.429 0.624 0.729 0.76  0.792]  share > 0.8: 0.002 | KS vs test 0.056
+leopard  TEST        top-1 quantiles [0.273 0.296 0.339 0.454 0.633 0.745 0.801 0.882]  share > 0.8: 0.051
+leopard  m0          top-1 quantiles [0.267 0.29  0.336 0.424 0.619 0.749 0.801 0.88 ]  share > 0.8: 0.051 | KS vs test 0.060
+leopard  m1          top-1 quantiles [0.264 0.288 0.333 0.433 0.598 0.714 0.762 0.851]  share > 0.8: 0.023 | KS vs test 0.065
+leopard  m2          top-1 quantiles [0.264 0.284 0.335 0.442 0.624 0.777 0.84  0.888]  share > 0.8: 0.080 | KS vs test 0.037
+leopard  s0          top-1 quantiles [0.265 0.289 0.344 0.515 0.692 0.758 0.779 0.804]  share > 0.8: 0.011 | KS vs test 0.113
+species  hyena  leopard
+scheme                 
+m0       0.049    0.060
+m1       0.084    0.065
+m2       0.068    0.037
+s0       0.056    0.113
+hyena: train=1912 test=1217 identities=205
+leopard: train=5251 test=1574 identities=345
+[    46s] scheme m0      (train+val): queries/fold [1451, 1791, 1957, 1914] | new share 30.3%
+[    46s] scheme m1      (train+val): queries/fold [1760, 1517, 1380, 2451] | new share 30.7%
+[    46s] scheme m2      (train+val): queries/fold [1582, 1707, 1820, 2004] | new share 30.3%
+[    46s] scheme s0      (EVAL ONLY): queries/fold [1922, 1683, 1703, 1815] | new share 30.4%
+[    66s]   hyena: best alpha 0.1 (top-1 0.8005; no projection 0.7586); cross-fit selection optimism +0.0010
+[    93s]   leopard: best alpha 0.01 (top-1 0.7423; no projection 0.6968); cross-fit selection optimism +0.0030
+viewpoints: ['back', 'backleft', 'backright', 'down', 'front', 'frontleft', 'frontright', 'left', 'right', 'unk', 'up']
+pair cache: 2,129,360 pairs loaded
+[    94s]   CV[m0] hyena fold 0: queries=455 gallery=1457
+[    94s]   CV[m0] hyena fold 1: queries=483 gallery=1429
+[    95s]   CV[m0] hyena fold 2: queries=455 gallery=1457
+[    96s]   CV[m0] hyena fold 3: queries=514 gallery=1398
+[    99s]   CV[m0] leopard fold 0: queries=996 gallery=4255
+[   101s]   CV[m0] leopard fold 1: queries=1308 gallery=3943
+[   103s]   CV[m0] leopard fold 2: queries=1502 gallery=3749
+[   106s]   CV[m0] leopard fold 3: queries=1400 gallery=3851
+[   106s] CV[m0] queries: 7113 | new share 30.3%
+[   107s]   CV[m1] hyena fold 0: queries=481 gallery=1431
+[   107s]   CV[m1] hyena fold 1: queries=457 gallery=1455
+[   108s]   CV[m1] hyena fold 2: queries=500 gallery=1412
+[   109s]   CV[m1] hyena fold 3: queries=466 gallery=1446
+[   111s]   CV[m1] leopard fold 0: queries=1279 gallery=3972
+[   114s]   CV[m1] leopard fold 1: queries=1060 gallery=4191
+[   116s]   CV[m1] leopard fold 2: queries=880 gallery=4371
+[   119s]   CV[m1] leopard fold 3: queries=1985 gallery=3266
+[   119s] CV[m1] queries: 7108 | new share 30.7%
+[   120s]   CV[m2] hyena fold 0: queries=450 gallery=1462
+[   120s]   CV[m2] hyena fold 1: queries=425 gallery=1487
+[   121s]   CV[m2] hyena fold 2: queries=493 gallery=1419
+[   122s]   CV[m2] hyena fold 3: queries=542 gallery=1370
+[   125s]   CV[m2] leopard fold 0: queries=1132 gallery=4119
+[   127s]   CV[m2] leopard fold 1: queries=1282 gallery=3969
+[   130s]   CV[m2] leopard fold 2: queries=1327 gallery=3924
+[   133s]   CV[m2] leopard fold 3: queries=1462 gallery=3789
+[   133s] CV[m2] queries: 7113 | new share 30.3%
+[   134s]   CV[s0] hyena fold 0: queries=488 gallery=1424
+[   134s]   CV[s0] hyena fold 1: queries=472 gallery=1440
+[   135s]   CV[s0] hyena fold 2: queries=450 gallery=1462
+[   135s]   CV[s0] hyena fold 3: queries=499 gallery=1413
+[   138s]   CV[s0] leopard fold 0: queries=1434 gallery=3817
+[   140s]   CV[s0] leopard fold 1: queries=1211 gallery=4040
+[   142s]   CV[s0] leopard fold 2: queries=1253 gallery=3998
+[   144s]   CV[s0] leopard fold 3: queries=1316 gallery=3935
+[   144s] CV[s0] queries: 7123 | new share 30.4%
+[   146s]   TEST hyena: queries=1217 gallery=1912
+[   149s]   TEST leopard: queries=1574 gallery=5251
+queries per CV fold vs test: {'m0': 1778, 'm1': 1777, 'm2': 1778, 's0': 1780} vs 2791
+[test] pairs: 586,110 | cached: 586,110 | to compute: 0
+[test-q2q] pairs: 13,955 | cached: 13,955 | to compute: 0
+[m0] pairs: 1,493,730 | cached: 1,493,730 | to compute: 0
+[m0-q2q] pairs: 35,565 | cached: 35,565 | to compute: 0
+[m1] pairs: 1,492,680 | cached: 939,815 | to compute: 552,865
+SIFT source: C:\Users\anupd\OneDrive\Desktop\ml\sift_features_train.npz | mode: folder of .npy
+SIFT source: C:\Users\anupd\OneDrive\Desktop\ml\sift_features_test.npz | mode: folder of .npy
+  loaded 2000/7163 SIFT arrays [83s]
+  loaded 4000/7163 SIFT arrays [167s]
+  loaded 6000/7163 SIFT arrays [243s]
+SIFT loaded: 7163 images [283s]
+[m1 batch 0-1977 of 7108 queries] 150,127 pairs on 22 thread(s)
+  9/99 chunks [112s]
+  18/99 chunks [112s]
+  27/99 chunks [112s]
+  36/99 chunks [112s]
+  45/99 chunks [112s]
+  54/99 chunks [114s]
+  63/99 chunks [149s]
+  72/99 chunks [149s]
+  81/99 chunks [155s]
+  90/99 chunks [155s]
+  99/99 chunks [157s]
+[m1 batch 1977-3971 of 7108 queries] 150,038 pairs on 22 thread(s)
+  10/100 chunks [118s]
+  20/100 chunks [118s]
+  30/100 chunks [118s]
+  40/100 chunks [118s]
+  50/100 chunks [118s]
+  60/100 chunks [157s]
+  70/100 chunks [157s]
+  80/100 chunks [161s]
+  90/100 chunks [164s]
+  100/100 chunks [164s]
+[m1 batch 3971-5934 of 7108 queries] 150,031 pairs on 22 thread(s)
+  9/99 chunks [97s]
+  18/99 chunks [97s]
+  27/99 chunks [97s]
+  36/99 chunks [97s]
+  45/99 chunks [97s]
+  54/99 chunks [97s]
+  63/99 chunks [127s]
+  72/99 chunks [127s]
+  81/99 chunks [148s]
+  90/99 chunks [148s]
+  99/99 chunks [150s]
+[m1 batch 5934-7108 of 7108 queries] 102,669 pairs on 22 thread(s)
+  5/59 chunks [33s]
+  10/59 chunks [98s]
+  15/59 chunks [98s]
+  20/59 chunks [98s]
+  25/59 chunks [98s]
+  30/59 chunks [98s]
+  35/59 chunks [98s]
+  40/59 chunks [98s]
+  45/59 chunks [98s]
+  50/59 chunks [98s]
+  55/59 chunks [99s]
+[m1-q2q] pairs: 35,540 | cached: 33,046 | to compute: 2,494
+SIFT source: C:\Users\anupd\OneDrive\Desktop\ml\sift_features_train.npz | mode: folder of .npy
+SIFT source: C:\Users\anupd\OneDrive\Desktop\ml\sift_features_test.npz | mode: folder of .npy
+  loaded 2000/2607 SIFT arrays [2s]
+SIFT loaded: 2607 images [3s]
+[m1-q2q batch 0-1503 of 1503 queries] 2,494 pairs on 22 thread(s)
+  7/76 chunks [1s]
+  14/76 chunks [1s]
+  21/76 chunks [1s]
+  28/76 chunks [1s]
+  35/76 chunks [2s]
+  42/76 chunks [2s]
+  49/76 chunks [2s]
+  56/76 chunks [2s]
+  63/76 chunks [2s]
+  70/76 chunks [2s]
+[m2] pairs: 1,493,730 | cached: 1,181,074 | to compute: 312,656
+SIFT source: C:\Users\anupd\OneDrive\Desktop\ml\sift_features_train.npz | mode: folder of .npy
+SIFT source: C:\Users\anupd\OneDrive\Desktop\ml\sift_features_test.npz | mode: folder of .npy
+  loaded 2000/7163 SIFT arrays [2s]
+  loaded 4000/7163 SIFT arrays [4s]
+  loaded 6000/7163 SIFT arrays [7s]
+SIFT loaded: 7163 images [8s]
+[m2 batch 0-3653 of 7113 queries] 150,005 pairs on 22 thread(s)
+  18/183 chunks [33s]
+  36/183 chunks [33s]
+  54/183 chunks [33s]
+  72/183 chunks [53s]
+  90/183 chunks [72s]
+  108/183 chunks [72s]
+  126/183 chunks [106s]
+  144/183 chunks [130s]
+  162/183 chunks [131s]
+  180/183 chunks [135s]
+[m2 batch 3653-6857 of 7113 queries] 150,039 pairs on 22 thread(s)
+  16/161 chunks [76s]
+  32/161 chunks [76s]
+  48/161 chunks [76s]
+  64/161 chunks [86s]
+  80/161 chunks [111s]
+  96/161 chunks [125s]
+  112/161 chunks [125s]
+  128/161 chunks [128s]
+  144/161 chunks [150s]
+  160/161 chunks [151s]
+[m2 batch 6857-7113 of 7113 queries] 12,612 pairs on 22 thread(s)
+  1/13 chunks [10s]
+  2/13 chunks [10s]
+  3/13 chunks [12s]
+  4/13 chunks [12s]
+  5/13 chunks [14s]
+  6/13 chunks [14s]
+  7/13 chunks [15s]
+  8/13 chunks [15s]
+  9/13 chunks [15s]
+  10/13 chunks [15s]
+  11/13 chunks [15s]
+  12/13 chunks [15s]
+  13/13 chunks [15s]
+[m2-q2q] pairs: 35,565 | cached: 33,359 | to compute: 2,206
+SIFT source: C:\Users\anupd\OneDrive\Desktop\ml\sift_features_train.npz | mode: folder of .npy
+SIFT source: C:\Users\anupd\OneDrive\Desktop\ml\sift_features_test.npz | mode: folder of .npy
+SIFT loaded: 1329 images [1s]
+[m2-q2q batch 0-946 of 946 queries] 2,206 pairs on 22 thread(s)
+  4/48 chunks [1s]
+  8/48 chunks [1s]
+  12/48 chunks [1s]
+  16/48 chunks [2s]
+  20/48 chunks [2s]
+  24/48 chunks [2s]
+  28/48 chunks [2s]
+  32/48 chunks [2s]
+  36/48 chunks [2s]
+  40/48 chunks [2s]
+  44/48 chunks [2s]
+  48/48 chunks [2s]
+[s0] pairs: 1,495,830 | cached: 1,326,067 | to compute: 169,763
+SIFT source: C:\Users\anupd\OneDrive\Desktop\ml\sift_features_train.npz | mode: folder of .npy
+SIFT source: C:\Users\anupd\OneDrive\Desktop\ml\sift_features_test.npz | mode: folder of .npy
+  loaded 2000/7163 SIFT arrays [2s]
+  loaded 4000/7163 SIFT arrays [4s]
+  loaded 6000/7163 SIFT arrays [6s]
+SIFT loaded: 7163 images [8s]
+[s0 batch 0-6299 of 7123 queries] 150,018 pairs on 22 thread(s)
+  31/315 chunks [18s]
+  62/315 chunks [35s]
+  93/315 chunks [39s]
+  124/315 chunks [79s]
+  155/315 chunks [79s]
+  186/315 chunks [100s]
+  217/315 chunks [106s]
+  248/315 chunks [127s]
+  279/315 chunks [132s]
+  310/315 chunks [140s]
+[s0 batch 6299-7123 of 7123 queries] 19,745 pairs on 22 thread(s)
+  4/42 chunks [8s]
+  8/42 chunks [9s]
+  12/42 chunks [14s]
+  16/42 chunks [19s]
+  20/42 chunks [19s]
+  24/42 chunks [19s]
+  28/42 chunks [19s]
+  32/42 chunks [19s]
+  36/42 chunks [19s]
+  40/42 chunks [20s]
+[s0-q2q] pairs: 35,615 | cached: 34,831 | to compute: 784
+SIFT source: C:\Users\anupd\OneDrive\Desktop\ml\sift_features_train.npz | mode: folder of .npy
+SIFT source: C:\Users\anupd\OneDrive\Desktop\ml\sift_features_test.npz | mode: folder of .npy
+SIFT loaded: 604 images [1s]
+[s0-q2q batch 0-434 of 434 queries] 784 pairs on 22 thread(s)
+  2/22 chunks [0s]
+  4/22 chunks [0s]
+  6/22 chunks [0s]
+  8/22 chunks [0s]
+  10/22 chunks [1s]
+  12/22 chunks [1s]
+  14/22 chunks [1s]
+  16/22 chunks [1s]
+  18/22 chunks [1s]
+  20/22 chunks [1s]
+  22/22 chunks [1s]
+[m0] share of top-M pairs with 0 inliers: 82.8%
+[m0] mean inliers  same-identity: 4.1 | different-identity: 0.4
+[m1] share of top-M pairs with 0 inliers: 82.8%
+[m1] mean inliers  same-identity: 3.3 | different-identity: 0.4
+[m2] share of top-M pairs with 0 inliers: 82.5%
+[m2] mean inliers  same-identity: 3.1 | different-identity: 0.4
+[s0] share of top-M pairs with 0 inliers: 81.9%
+[s0] mean inliers  same-identity: 3.6 | different-identity: 0.4
+Shift report: quantiles (10/50/90 %). KS = distance of the top-1 cosine to the test distribution.
+hyena    test   all   n= 1217 | top1 cos [0.139 0.238 0.579] | q2q1 [0.145 0.33  0.731] | q2q3 [0.134 0.233 0.515] | top1 learned [0.171 0.292 0.652]
+hyena    m0     all   n= 1907 | top1 cos [0.128 0.22  0.564] | q2q1 [0.119 0.29  0.792] | q2q3 [0.11  0.201 0.542] | top1 learned [0.158 0.277 0.599]
+hyena    m0     known n= 1331 | top1 cos [0.154 0.308 0.601] | q2q1 [0.115 0.195 0.777] | q2q3 [0.106 0.151 0.462] | top1 learned [0.19  0.379 0.636]
+hyena    m0     new   n=  576 | top1 cos [0.116 0.144 0.191] | q2q1 [0.177 0.478 0.814] | q2q3 [0.144 0.345 0.603] | top1 learned [0.143 0.179 0.241]
+hyena    m0     KS(top-1 cosine, all queries vs test) = 0.078   | mean pool size per fold 476 vs test 1217
+hyena    m1     all   n= 1904 | top1 cos [0.128 0.199 0.535] | q2q1 [0.119 0.294 0.776] | q2q3 [0.109 0.206 0.55 ] | top1 learned [0.162 0.251 0.59 ]
+hyena    m1     known n= 1305 | top1 cos [0.143 0.277 0.572] | q2q1 [0.113 0.209 0.753] | q2q3 [0.105 0.158 0.512] | top1 learned [0.178 0.337 0.622]
+hyena    m1     new   n=  599 | top1 cos [0.117 0.145 0.199] | q2q1 [0.165 0.428 0.817] | q2q3 [0.138 0.319 0.63 ] | top1 learned [0.149 0.181 0.261]
+hyena    m1     KS(top-1 cosine, all queries vs test) = 0.103   | mean pool size per fold 476 vs test 1217
+hyena    m2     all   n= 1910 | top1 cos [0.126 0.201 0.54 ] | q2q1 [0.122 0.305 0.779] | q2q3 [0.11  0.21  0.548] | top1 learned [0.159 0.256 0.59 ]
+hyena    m2     known n= 1334 | top1 cos [0.141 0.277 0.587] | q2q1 [0.118 0.231 0.782] | q2q3 [0.107 0.166 0.507] | top1 learned [0.176 0.338 0.629]
+hyena    m2     new   n=  576 | top1 cos [0.116 0.146 0.204] | q2q1 [0.173 0.408 0.763] | q2q3 [0.144 0.309 0.594] | top1 learned [0.144 0.18  0.264]
+hyena    m2     KS(top-1 cosine, all queries vs test) = 0.098   | mean pool size per fold 477 vs test 1217
+hyena    s0     all   n= 1909 | top1 cos [0.134 0.25  0.58 ] | q2q1 [0.119 0.266 0.792] | q2q3 [0.109 0.188 0.518] | top1 learned [0.162 0.304 0.619]
+hyena    s0     known n= 1332 | top1 cos [0.162 0.361 0.61 ] | q2q1 [0.114 0.191 0.81 ] | q2q3 [0.105 0.152 0.506] | top1 learned [0.195 0.419 0.646]
+hyena    s0     new   n=  577 | top1 cos [0.119 0.148 0.208] | q2q1 [0.167 0.392 0.721] | q2q3 [0.14  0.284 0.537] | top1 learned [0.146 0.185 0.272]
+hyena    s0     KS(top-1 cosine, all queries vs test) = 0.038   | mean pool size per fold 477 vs test 1217
+
+leopard  test   all   n= 1574 | top1 cos [0.186 0.302 0.658] | q2q1 [0.172 0.348 0.814] | q2q3 [0.156 0.266 0.617] | top1 learned [0.227 0.359 0.717]
+leopard  m0     all   n= 5206 | top1 cos [0.153 0.243 0.632] | q2q1 [0.17  0.485 0.87 ] | q2q3 [0.153 0.369 0.726] | top1 learned [0.212 0.331 0.683]
+leopard  m0     known n= 3628 | top1 cos [0.16  0.325 0.696] | q2q1 [0.168 0.469 0.874] | q2q3 [0.152 0.355 0.734] | top1 learned [0.242 0.396 0.724]
+leopard  m0     new   n= 1578 | top1 cos [0.147 0.187 0.262] | q2q1 [0.176 0.517 0.856] | q2q3 [0.157 0.402 0.699] | top1 learned [0.191 0.243 0.337]
+leopard  m0     KS(top-1 cosine, all queries vs test) = 0.186   | mean pool size per fold 1301 vs test 1574
+leopard  m1     all   n= 5204 | top1 cos [0.153 0.238 0.579] | q2q1 [0.17  0.505 0.874] | q2q3 [0.153 0.385 0.737] | top1 learned [0.204 0.317 0.645]
+leopard  m1     known n= 3623 | top1 cos [0.16  0.301 0.626] | q2q1 [0.168 0.505 0.877] | q2q3 [0.151 0.383 0.752] | top1 learned [0.228 0.39  0.694]
+leopard  m1     new   n= 1581 | top1 cos [0.148 0.184 0.265] | q2q1 [0.178 0.506 0.863] | q2q3 [0.159 0.39  0.69 ] | top1 learned [0.188 0.237 0.337]
+leopard  m1     KS(top-1 cosine, all queries vs test) = 0.190   | mean pool size per fold 1301 vs test 1574
+leopard  m2     all   n= 5203 | top1 cos [0.159 0.255 0.606] | q2q1 [0.175 0.489 0.873] | q2q3 [0.157 0.368 0.731] | top1 learned [0.208 0.328 0.659]
+leopard  m2     known n= 3627 | top1 cos [0.171 0.337 0.653] | q2q1 [0.173 0.479 0.876] | q2q3 [0.156 0.361 0.746] | top1 learned [0.233 0.404 0.698]
+leopard  m2     new   n= 1576 | top1 cos [0.149 0.187 0.262] | q2q1 [0.181 0.517 0.867] | q2q3 [0.159 0.388 0.693] | top1 learned [0.189 0.244 0.331]
+leopard  m2     KS(top-1 cosine, all queries vs test) = 0.158   | mean pool size per fold 1300 vs test 1574
+leopard  s0     all   n= 5214 | top1 cos [0.168 0.315 0.622] | q2q1 [0.169 0.463 0.875] | q2q3 [0.152 0.346 0.728] | top1 learned [0.212 0.379 0.669]
+leopard  s0     known n= 3629 | top1 cos [0.219 0.413 0.656] | q2q1 [0.168 0.439 0.88 ] | q2q3 [0.152 0.331 0.743] | top1 learned [0.26  0.491 0.702]
+leopard  s0     new   n= 1585 | top1 cos [0.148 0.187 0.261] | q2q1 [0.17  0.503 0.847] | q2q3 [0.154 0.38  0.694] | top1 learned [0.192 0.239 0.325]
+leopard  s0     KS(top-1 cosine, all queries vs test) = 0.084   | mean pool size per fold 1303 vs test 1574
+
+new-individual share: CV prior vs estimate from the test similarity distribution (PRIOR_SHIFT=auto)
+               cv   hat    lo    hi        ks fit_ok   use
+hyena    0.306072  0.15  0.14  0.18  0.037874   True  0.18
+leopard  0.303273   0.0   0.0  0.04  0.089604   True  0.04
+[  1515s]   A  raw cosine  [V1 baseline]           [m0    ] MAP@5 0.7962 (in-sample tau 0.7978) | hyena 0.8157 leopard 0.7891 | known 0.7550 new 0.8910
+[  1515s]   B  + centre / PCA-whiten               [m0    ] MAP@5 0.7665 (in-sample tau 0.7678) | hyena 0.8361 leopard 0.7410 | known 0.6977 new 0.9248
+[  1515s]   C  + k-reciprocal re-ranking           [m0    ] MAP@5 0.7738 (in-sample tau 0.7752) | hyena 0.8433 leopard 0.7483 | known 0.7025 new 0.9378
+[  1516s]   D  + top-2 identity aggregation        [m0    ] MAP@5 0.7685 (in-sample tau 0.7711) | hyena 0.8346 leopard 0.7443 | known 0.7023 new 0.9207
+[  1516s]   E  + SIFT/RANSAC + viewpoint  [V2]     [m0    ] MAP@5 0.8215 (in-sample tau 0.8237) | hyena 0.8350 leopard 0.8165 | known 0.7836 new 0.9086
+[m0] per-species tau  V1: {'hyena': np.float64(0.4866), 'leopard': np.float64(0.485)} | V2: {'hyena': np.float64(0.1826), 'leopard': np.float64(0.2925)}
+[  1516s]   A  raw cosine  [V1 baseline]           [m1    ] MAP@5 0.7544 (in-sample tau 0.7552) | hyena 0.7652 leopard 0.7504 | known 0.6958 new 0.8869
+[  1517s]   B  + centre / PCA-whiten               [m1    ] MAP@5 0.7402 (in-sample tau 0.7410) | hyena 0.7859 leopard 0.7235 | known 0.6670 new 0.9057
+[  1517s]   C  + k-reciprocal re-ranking           [m1    ] MAP@5 0.7471 (in-sample tau 0.7480) | hyena 0.7943 leopard 0.7298 | known 0.6730 new 0.9144
+[  1517s]   D  + top-2 identity aggregation        [m1    ] MAP@5 0.7481 (in-sample tau 0.7492) | hyena 0.7921 leopard 0.7320 | known 0.6805 new 0.9008
+[  1518s]   E  + SIFT/RANSAC + viewpoint  [V2]     [m1    ] MAP@5 0.8098 (in-sample tau 0.8104) | hyena 0.7920 leopard 0.8163 | known 0.7666 new 0.9075
+[m1] per-species tau  V1: {'hyena': np.float64(0.4767), 'leopard': np.float64(0.495)} | V2: {'hyena': np.float64(0.1754), 'leopard': np.float64(0.292)}
+[  1518s]   A  raw cosine  [V1 baseline]           [m2    ] MAP@5 0.7741 (in-sample tau 0.7761) | hyena 0.7688 leopard 0.7760 | known 0.7291 new 0.8777
+[  1519s]   B  + centre / PCA-whiten               [m2    ] MAP@5 0.7621 (in-sample tau 0.7641) | hyena 0.7773 leopard 0.7565 | known 0.6972 new 0.9117
+[  1519s]   C  + k-reciprocal re-ranking           [m2    ] MAP@5 0.7711 (in-sample tau 0.7716) | hyena 0.7986 leopard 0.7610 | known 0.7108 new 0.9103
+[  1519s]   D  + top-2 identity aggregation        [m2    ] MAP@5 0.7716 (in-sample tau 0.7732) | hyena 0.7911 leopard 0.7644 | known 0.7085 new 0.9171
+[  1520s]   E  + SIFT/RANSAC + viewpoint  [V2]     [m2    ] MAP@5 0.8274 (in-sample tau 0.8283) | hyena 0.7996 leopard 0.8377 | known 0.7954 new 0.9013
+[m2] per-species tau  V1: {'hyena': np.float64(0.4751), 'leopard': np.float64(0.4802)} | V2: {'hyena': np.float64(0.2014), 'leopard': np.float64(0.2759)}
+[  1520s]   A  raw cosine  [V1 baseline]           [s0    ] MAP@5 0.8552 (in-sample tau 0.8577) | hyena 0.8303 leopard 0.8644 | known 0.8282 new 0.9172
+[  1520s]   B  + centre / PCA-whiten               [s0    ] MAP@5 0.8630 (in-sample tau 0.8642) | hyena 0.8433 leopard 0.8702 | known 0.8340 new 0.9295
+[  1521s]   C  + k-reciprocal re-ranking           [s0    ] MAP@5 0.8661 (in-sample tau 0.8659) | hyena 0.8509 leopard 0.8717 | known 0.8376 new 0.9315
+[  1521s]   D  + top-2 identity aggregation        [s0    ] MAP@5 0.8670 (in-sample tau 0.8676) | hyena 0.8482 leopard 0.8738 | known 0.8458 new 0.9156
+[  1521s]   E  + SIFT/RANSAC + viewpoint  [V2]     [s0    ] MAP@5 0.8970 (in-sample tau 0.8978) | hyena 0.8492 leopard 0.9144 | known 0.8837 new 0.9274
+[s0] per-species tau  V1: {'hyena': np.float64(0.4875), 'leopard': np.float64(0.5191)} | V2: {'hyena': np.float64(0.2209), 'leopard': np.float64(0.2879)}
+[  1531s] identity table [m0]: 227,210 rows | positives: 4,798 | retrieval recall ceiling for known queries: 96.8%
+[  1531s] identity table [m1]: 227,040 rows | positives: 4,724 | retrieval recall ceiling for known queries: 95.9%
+[  1531s] identity table [m2]: 225,898 rows | positives: 4,726 | retrieval recall ceiling for known queries: 95.3%
+[  1531s] identity table [s0]: 225,525 rows | positives: 4,867 | retrieval recall ceiling for known queries: 98.1%
+[  1531s] [m0] candidate-identity recall ceiling: top-30 v2 / union 31.9 identities per query | known queries with truth in the table: 0.968
+[  1531s] [m1] candidate-identity recall ceiling: top-30 v2 / union 31.9 identities per query | known queries with truth in the table: 0.959
+[  1531s] [m2] candidate-identity recall ceiling: top-30 v2 / union 31.8 identities per query | known queries with truth in the table: 0.953
+[  1531s] [s0] candidate-identity recall ceiling: top-30 v2 / union 31.7 identities per query | known queries with truth in the table: 0.981
+[  1531s] V3: identity ranker (no neighbour features), out-of-fold ...
+[  1715s]     model fold 0 done
+[  1844s]     model fold 1 done
+[  1948s]     model fold 2 done
+[  2075s]     model fold 3 done
+[  2177s]     model fold 4 done
+[  2177s]   F  V3a: learned ranker + tau           [m0    ] MAP@5 0.8509 (in-sample tau 0.8513) | hyena 0.8550 leopard 0.8494 | known 0.8178 new 0.9270
+[  2177s]   F  V3a: learned ranker + tau           [m1    ] MAP@5 0.8268 (in-sample tau 0.8283) | hyena 0.8114 leopard 0.8325 | known 0.7877 new 0.9153
+[  2177s]   F  V3a: learned ranker + tau           [m2    ] MAP@5 0.8441 (in-sample tau 0.8452) | hyena 0.8161 leopard 0.8544 | known 0.8134 new 0.9149
+[  2178s]   F  V3a: learned ranker + tau           [s0    ] MAP@5 0.9078 (in-sample tau 0.9086) | hyena 0.8673 leopard 0.9227 | known 0.8914 new 0.9454
+[  2178s] V3: learned P(new), out-of-fold ...
+[  2204s]     model fold 0 done
+[  2229s]     model fold 1 done
+[  2257s]     model fold 2 done
+[  2286s]     model fold 3 done
+[  2314s]     model fold 4 done
+[  2314s]   G  V3b: + learned P(new)               [m0    ] MAP@5 0.8547 | hyena 0.8570 leopard 0.8539 | known 0.8164 new 0.9431
+[  2314s]   G  V3b: + learned P(new)               [m1    ] MAP@5 0.8322 | hyena 0.8153 leopard 0.8384 | known 0.7885 new 0.9310
+[  2314s]   G  V3b: + learned P(new)               [m2    ] MAP@5 0.8509 | hyena 0.8216 leopard 0.8617 | known 0.8164 new 0.9306
+[  2314s]   G  V3b: + learned P(new)               [s0    ] MAP@5 0.9105 | hyena 0.8702 leopard 0.9252 | known 0.8969 new 0.9416
+[  2314s] V4 stage 1: identity ranker with neighbour-free features + P(new) ...
+[  2464s]     model fold 0 done
+[  2592s]     model fold 1 done
+[  2732s]     model fold 2 done
+[  2874s]     model fold 3 done
+[  3002s]     model fold 4 done
+[  3026s]     model fold 0 done
+[  3048s]     model fold 1 done
+[  3068s]     model fold 2 done
+[  3098s]     model fold 3 done
+[  3112s]     model fold 4 done
+[  3112s]   H  V4a: stage 1 (calibrated)           [m0    ] MAP@5 0.8764 | hyena 0.8739 leopard 0.8773 | known 0.8483 new 0.9408
+[  3112s]   H  V4a: stage 1 (calibrated)           [m1    ] MAP@5 0.8532 | hyena 0.8265 leopard 0.8630 | known 0.8157 new 0.9382
+[  3112s]   H  V4a: stage 1 (calibrated)           [m2    ] MAP@5 0.8610 | hyena 0.8358 leopard 0.8702 | known 0.8306 new 0.9311
+[  3112s]   H  V4a: stage 1 (calibrated)           [s0    ] MAP@5 0.9142 | hyena 0.8743 leopard 0.9289 | known 0.9035 new 0.9388
+[  3112s] V4 stage 2: neighbour evidence from other test queries ...
+[  3240s]     model fold 0 done
+[  3365s]     model fold 1 done
+[  3509s]     model fold 2 done
+[  3640s]     model fold 3 done
+[  3767s]     model fold 4 done
+[  3794s]     model fold 0 done
+[  3818s]     model fold 1 done
+[  3833s]     model fold 2 done
+[  3855s]     model fold 3 done
+[  3876s]     model fold 4 done
+[  3876s]   I  V4b: + neighbour evidence           [m0    ] MAP@5 0.8819 | hyena 0.8838 leopard 0.8811 | known 0.8593 new 0.9338
+[  3876s]   I  V4b: + neighbour evidence           [m1    ] MAP@5 0.8620 | hyena 0.8388 leopard 0.8705 | known 0.8308 new 0.9325
+[  3876s]   I  V4b: + neighbour evidence           [m2    ] MAP@5 0.8692 | hyena 0.8481 leopard 0.8770 | known 0.8466 new 0.9214
+[  3876s]   I  V4b: + neighbour evidence           [s0    ] MAP@5 0.9171 | hyena 0.8865 leopard 0.9283 | known 0.9104 new 0.9324
+[  3876s] stage-2 gain: m0 +0.0055 | m1 +0.0088 | m2 +0.0083 | s0 +0.0029
+[  3876s] pooled test-like CV MAP@5: stage 1 0.8635 -> stage 2 0.8711 | submission uses stage 2
+pool statistics, test vs CV schemes (medians) - these depend on the size/composition of the query pool:
+  q2q1         test median 0.340 | m0 0.433 m1 0.447 m2 0.436 s0 0.400
+  q2q3         test median 0.252 | m0 0.319 m1 0.334 m2 0.325 s0 0.297
+  nn_sim1      test median 0.340 | m0 0.433 m1 0.447 m2 0.436 s0 0.400
+[  3876s] V4c: stage 2 without the pool-size statistics ['nn_sim1', 'nn_sim_mean', 'q2q1', 'q2q3'] ...
+[  4047s]     model fold 0 done
+[  4203s]     model fold 1 done
+[  4346s]     model fold 2 done
+[  4467s]     model fold 3 done
+[  4598s]     model fold 4 done
+[  4621s]     model fold 0 done
+[  4654s]     model fold 1 done
+[  4671s]     model fold 2 done
+[  4693s]     model fold 3 done
+[  4718s]     model fold 4 done
+[  4718s]   J  V4c: stage 2 w/o pool-size stats    [m0    ] MAP@5 0.8791 | hyena 0.8778 leopard 0.8795 | known 0.8544 new 0.9359
+[  4718s]   J  V4c: stage 2 w/o pool-size stats    [m1    ] MAP@5 0.8586 | hyena 0.8287 leopard 0.8695 | known 0.8260 new 0.9323
+[  4718s]   J  V4c: stage 2 w/o pool-size stats    [m2    ] MAP@5 0.8665 | hyena 0.8405 leopard 0.8760 | known 0.8422 new 0.9225
+[  4718s]   J  V4c: stage 2 w/o pool-size stats    [s0    ] MAP@5 0.9149 | hyena 0.8780 leopard 0.9284 | known 0.9072 new 0.9326
+[  4718s] pooled CV MAP@5 over ('m0', 'm1', 'm2'): H 0.8635 | I 0.8711 | J 0.8681  -> final stage I
+          m0      m1      m2      s0  pooled_train_schemes
+raw   0.8819  0.8620  0.8692  0.9171                0.8711
+norm  0.8815  0.8600  0.8682  0.9154                0.8699
+cap   0.8780  0.8587  0.8663  0.9183                0.8677
+[  4718s] list construction: 'raw'
+                                             MAP@5  MAP@5 (in-sample tau)   hyena  leopard  known_queries  new_queries  new@1_rate
+scheme version                                                                                                                    
+m0     A  raw cosine  [V1 baseline]         0.7962                 0.7978  0.8157   0.7891         0.7550       0.8910      0.4008
+       B  + centre / PCA-whiten             0.7665                 0.7678  0.8361   0.7410         0.6977       0.9248      0.4790
+       C  + k-reciprocal re-ranking         0.7738                 0.7752  0.8433   0.7483         0.7025       0.9378      0.4978
+       D  + top-2 identity aggregation      0.7685                 0.7711  0.8346   0.7443         0.7023       0.9207      0.4846
+       E  + SIFT/RANSAC + viewpoint  [V2]   0.8215                 0.8237  0.8350   0.8165         0.7836       0.9086      0.4187
+       F  V3a: learned ranker + tau         0.8509                 0.8513  0.8550   0.8494         0.8178       0.9270      0.4077
+       G  V3b: + learned P(new)             0.8547                    NaN  0.8570   0.8539         0.8164       0.9431      0.4230
+       H  V4a: stage 1 (calibrated)         0.8764                    NaN  0.8739   0.8773         0.8483       0.9408      0.3908
+       I  V4b: + neighbour evidence         0.8819                    NaN  0.8838   0.8811         0.8593       0.9338      0.3662
+       J  V4c: stage 2 w/o pool-size stats  0.8791                    NaN  0.8778   0.8795         0.8544       0.9359      0.3797
+m1     A  raw cosine  [V1 baseline]         0.7544                 0.7552  0.7652   0.7504         0.6958       0.8869      0.4108
+       B  + centre / PCA-whiten             0.7402                 0.7410  0.7859   0.7235         0.6670       0.9057      0.4752
+       C  + k-reciprocal re-ranking         0.7471                 0.7480  0.7943   0.7298         0.6730       0.9144      0.4958
+       D  + top-2 identity aggregation      0.7481                 0.7492  0.7921   0.7320         0.6805       0.9008      0.4758
+       E  + SIFT/RANSAC + viewpoint  [V2]   0.8098                 0.8104  0.7920   0.8163         0.7666       0.9075      0.4216
+       F  V3a: learned ranker + tau         0.8268                 0.8283  0.8114   0.8325         0.7877       0.9153      0.4156
+       G  V3b: + learned P(new)             0.8322                    NaN  0.8153   0.8384         0.7885       0.9310      0.4284
+       H  V4a: stage 1 (calibrated)         0.8532                    NaN  0.8265   0.8630         0.8157       0.9382      0.4032
+       I  V4b: + neighbour evidence         0.8620                    NaN  0.8388   0.8705         0.8308       0.9325      0.3814
+       J  V4c: stage 2 w/o pool-size stats  0.8586                    NaN  0.8287   0.8695         0.8260       0.9323      0.3903
+m2     A  raw cosine  [V1 baseline]         0.7741                 0.7761  0.7688   0.7760         0.7291       0.8777      0.3894
+       B  + centre / PCA-whiten             0.7621                 0.7641  0.7773   0.7565         0.6972       0.9117      0.4645
+       C  + k-reciprocal re-ranking         0.7711                 0.7716  0.7986   0.7610         0.7108       0.9103      0.4610
+       D  + top-2 identity aggregation      0.7716                 0.7732  0.7911   0.7644         0.7085       0.9171      0.4766
+       E  + SIFT/RANSAC + viewpoint  [V2]   0.8274                 0.8283  0.7996   0.8377         0.7954       0.9013      0.4014
+       F  V3a: learned ranker + tau         0.8441                 0.8452  0.8161   0.8544         0.8134       0.9149      0.3983
+       G  V3b: + learned P(new)             0.8509                    NaN  0.8216   0.8617         0.8164       0.9306      0.4066
+       H  V4a: stage 1 (calibrated)         0.8610                    NaN  0.8358   0.8702         0.8306       0.9311      0.3898
+       I  V4b: + neighbour evidence         0.8692                    NaN  0.8481   0.8770         0.8466       0.9214      0.3682
+       J  V4c: stage 2 w/o pool-size stats  0.8665                    NaN  0.8405   0.8760         0.8422       0.9225      0.3782
+s0     A  raw cosine  [V1 baseline]         0.8552                 0.8577  0.8303   0.8644         0.8282       0.9172      0.3820
+       B  + centre / PCA-whiten             0.8630                 0.8642  0.8433   0.8702         0.8340       0.9295      0.3810
+       C  + k-reciprocal re-ranking         0.8661                 0.8659  0.8509   0.8717         0.8376       0.9315      0.3812
+       D  + top-2 identity aggregation      0.8670                 0.8676  0.8482   0.8738         0.8458       0.9156      0.3663
+       E  + SIFT/RANSAC + viewpoint  [V2]   0.8970                 0.8978  0.8492   0.9144         0.8837       0.9274      0.3529
+       F  V3a: learned ranker + tau         0.9078                 0.9086  0.8673   0.9227         0.8914       0.9454      0.3573
+       G  V3b: + learned P(new)             0.9105                    NaN  0.8702   0.9252         0.8969       0.9416      0.3470
+       H  V4a: stage 1 (calibrated)         0.9142                    NaN  0.8743   0.9289         0.9035       0.9388      0.3417
+       I  V4b: + neighbour evidence         0.9171                    NaN  0.8865   0.9283         0.9104       0.9324      0.3209
+       J  V4c: stage 2 w/o pool-size stats  0.9149                    NaN  0.8780   0.9284         0.9072       0.9326      0.3305
+
+MAP@5 on the test-like folds, mean / std over 3 seed(s):
+                                       mean     std
+version                                            
+A  raw cosine  [V1 baseline]         0.7749  0.0209
+B  + centre / PCA-whiten             0.7563  0.0141
+C  + k-reciprocal re-ranking         0.7640  0.0147
+D  + top-2 identity aggregation      0.7627  0.0128
+E  + SIFT/RANSAC + viewpoint  [V2]   0.8196  0.0090
+F  V3a: learned ranker + tau         0.8406  0.0124
+G  V3b: + learned P(new)             0.8460  0.0121
+H  V4a: stage 1 (calibrated)         0.8635  0.0118
+I  V4b: + neighbour evidence         0.8710  0.0100
+J  V4c: stage 2 w/o pool-size stats  0.8681  0.0103
+
+EVALUATION-ONLY scheme s0 (models never trained on it):
+version
+A  raw cosine  [V1 baseline]           0.8552
+B  + centre / PCA-whiten               0.8630
+C  + k-reciprocal re-ranking           0.8661
+D  + top-2 identity aggregation        0.8670
+E  + SIFT/RANSAC + viewpoint  [V2]     0.8970
+F  V3a: learned ranker + tau           0.9078
+G  V3b: + learned P(new)               0.9105
+H  V4a: stage 1 (calibrated)           0.9142
+I  V4b: + neighbour evidence           0.9171
+J  V4c: stage 2 w/o pool-size stats    0.9149
+[m0] reference MAP@5 on the written-format lists = 0.881864  (matches the vectorised value)
+[m1] reference MAP@5 on the written-format lists = 0.862038  (matches the vectorised value)
+[m2] reference MAP@5 on the written-format lists = 0.869242  (matches the vectorised value)
+[s0] reference MAP@5 on the written-format lists = 0.917100  (matches the vectorised value)
+re-weighted m0 queries (CV share 0.30):
+                MAP_uncorrected  MAP_corrected    gain
+test_new_share                                        
+0.25                     0.8779         0.8800  0.0022
+0.30                     0.8816         0.8818  0.0003
+0.40                     0.8890         0.8874 -0.0016
+0.50                     0.8965         0.8966  0.0001
+0.55                     0.9002         0.9020  0.0019
+[m0]
+                                                        queries   share  MAP lost
+known: correct @2-5 (ranking error)                         321  0.0451    0.0305
+known: in candidates but outside top-5 (ranking error)      162  0.0228    0.0228
+known: true identity not retrieved (retrieval miss)         161  0.0226    0.0226
+known: right identity first, but NEW placed above it        316  0.0444    0.0222
+new: a known identity ranked above NEW (false match)        273  0.0384    0.0200
+new: NEW ranked 1st (correct)                              1881  0.2644    0.0000
+known: correct @1                                          3999  0.5622    0.0000
+
+total MAP lost = 0.1181  (1 - MAP@5)
+[s0]
+                                                        queries   share  MAP lost
+new: a known identity ranked above NEW (false match)        284  0.0399    0.0205
+known: correct @2-5 (ranking error)                         215  0.0302    0.0201
+known: in candidates but outside top-5 (ranking error)      126  0.0177    0.0177
+known: true identity not retrieved (retrieval miss)          94  0.0132    0.0132
+known: right identity first, but NEW placed above it        162  0.0227    0.0114
+new: NEW ranked 1st (correct)                              1878  0.2637    0.0000
+known: correct @1                                          4364  0.6127    0.0000
+
+total MAP lost = 0.0829  (1 - MAP@5)
+[m0]
+                 mean  size
+sp      new                
+hyena   False  0.8651  1331
+        True   0.9271   576
+leopard False  0.8572  3628
+        True   0.9363  1578
+[s0]
+                 mean  size
+sp      new                
+hyena   False  0.8694  1332
+        True   0.9258   577
+leopard False  0.9255  3629
+        True   0.9348  1585
+[m0] mean predicted P(new) on CV: 0.302 | true new share: 0.303
+[m1] mean predicted P(new) on CV: 0.319 | true new share: 0.307
+[m2] mean predicted P(new) on CV: 0.304 | true new share: 0.303
+[s0] mean predicted P(new) on CV: 0.262 | true new share: 0.304
+v2_top2_rel    0.0096
+cenl_rel       0.0028
+sr_max         0.0015
+inl_max_rel    0.0014
+cen            0.0013
+v2_top2        0.0010
+v2_max         0.0010
+cenl_rank      0.0009
+bk             0.0006
+best_rk        0.0006
+[  5327s] v7 = stage 'I' + list mode 'raw': mean P(new) on TEST 0.324 (hyena 0.334, leopard 0.316) | independent mixture estimate of the new share: hyena 0.15 [0.14, 0.18], leopard 0.00 [0.00, 0.04]
+[  5327s] mean predicted P(new) on TEST: V3 0.299 | stage1 0.306 | stage2 0.324   (CV true new share: 0.304)
+  by species (stage 2): {'hyena': 0.334, 'leopard': 0.316}
+[  5327s] prior-shift correction (auto): test new-share used per species {'hyena': 0.18, 'leopard': 0.04} | CV prior {'hyena': 0.306, 'leopard': 0.303}
+v1: OK -> out_v7\submission_v1.csv | new@1 rate 39.6% | NEW absent from list: 0
+v2: OK -> out_v7\submission_v2.csv | new@1 rate 35.7% | NEW absent from list: 0
+v3: OK -> out_v7\submission_v3.csv | new@1 rate 31.2% | NEW absent from list: 0
+v4_s1: OK -> out_v7\submission_v4_s1.csv | new@1 rate 31.4% | NEW absent from list: 0
+v4_s2: OK -> out_v7\submission_v4_s2.csv | new@1 rate 32.1% | NEW absent from list: 0
+v7: OK -> out_v7\submission_v7.csv | new@1 rate 32.1% | NEW absent from list: 0
+      id                                    predictions
+te_02465 HYE0236 HYE0126 new_individual HYE0619 HYE0346
+te_00689 new_individual LEO0391 LEO0614 LEO0412 LEO0592
+te_02684 new_individual HYE0675 HYE0126 HYE0350 HYE0515
+te_00992 HYE0524 new_individual HYE0034 HYE0577 HYE0446
+te_00617 HYE0188 HYE0125 HYE0400 HYE0214 new_individual
+te_00228 new_individual LEO0147 LEO0156 LEO0546 LEO0230
+>>> submission.csv written from version V7
+notebook executed OK in 5330s -> out_v7/submission10_v7_executed.ipynb
