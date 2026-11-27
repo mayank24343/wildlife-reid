@@ -19,8 +19,11 @@ Course requirements for this repo: tag every submission's notebook with a unique
 | 4 | 23-11 | Nandika | `submission4_23_11.ipynb` | + supervised projection, extra candidates, hard CV (V4 stage 1) | **0.84023** | rand 0.9069 / hard 0.7767 |
 | 6 | 23-11 | TBD | `submission6_23_11.ipynb` | V4 re-tuned (wider α grid, `CAND_LDA` 60) + transductive stage 2 submitted | **0.84842** | rand 0.9135 / hard 0.7826 |
 | 7 | 24-11 | Nandika | `submission7_24_11.ipynb` | Sub 6 + extra RootSIFT evidence (strict inliers, coverage) in both stages, wider candidate pool, CV-gated selection | **0.84870** | rand 0.9151 / hard 0.7866 |
+| 8 | 24-11 | TBD | `submission8_24_11.ipynb` | Per-species V4 strategy (pooled hyena / separate leopard), viewpoint-coverage features and viewpoint-specific identity prototypes; stage 1 submitted because stage 2 regressed on hard CV | not recorded | rand 0.9103 / hard 0.7847 (stage 1) |
+| 9 | 25-11 | TBD | `submission9_25_11.ipynb` | v6: test-calibrated open-set CV with burst-grouped known queries, controlled 0.30 new-identity share, identity-size cap, and conservative prior-shift correction; stage 2 selected | not recorded | test-like CV 0.9145 (stage 2, mean over 3 seeds); stress 0.7359 |
+| 11 | 26-11 | TBD | `submission11_26_11.ipynb` | v7: Sub 9 pipeline + flank-coverage features (`gn_fl`, `fl_frac`) for candidate identities in the learned ranker | **0.86063** | test-like CV 0.9166 (stage 2, mean over 3 seeds); stress 0.7484 |
+| 12 | 27-11 | Nandika | `submission12_26_11.ipynb` | v8: Sub 11 + score-normalised similarities (Z/T-norm style) + identity compactness, neighbour P(new) in stage 2, 4 LightGBM seeds | **0.86690** | test-like CV 0.9210 (stage 2, mean over 3 seeds); stress 0.7541 |
 
-No Sub 5 entry yet (the notebook for it wasn't in the folder when Sub 6 was logged). Add it above Sub 6 if it exists.
 
 ---
 
@@ -242,6 +245,144 @@ Pooled rand+hard MAP@5: s1 0.8426, s2 0.8464, s1x 0.8477, **s2x 0.8508**, fuse_x
 
 ---
 
+### Sub 8: Per-species V4 + viewpoint coverage (TBD, 24-11): LB not recorded
+
+**Notebook / git tag:** `submission8_24_11.ipynb` / tag to be added  
+**Based on:** Sub 7 / V4 pipeline
+
+**What it does**
+- Adds **viewpoint-coverage features** (`cov_same`, `cov_adj`, `cov_nvp`, `q_top_cov`, `q_frac_cov`) and one prototype per (identity, viewpoint), rather than relying on one centroid that can blur left/right flank appearances.
+- Uses a per-species router: the CV-selected strategy is **pooled models for hyena** and **separate models for leopard**.
+- Retains the V4 learned identity ranker, learned P(new), WCCN candidate generation and transductive query-neighbour evidence.
+
+**What changed vs the previous submission and why**
+- The EDA found that left and right flanks are not reliably similar within an identity, and leopard has substantially less viewpoint coverage than hyena. The revision therefore represents viewpoint coverage explicitly and chooses the modelling strategy separately by species.
+
+**CV results**
+- Stage 1 (submitted): rand 0.9103 / hard 0.7847.
+- Stage 2: rand 0.9161 / hard 0.7827. It gained +0.0058 on rand but lost −0.0020 on hard, so the notebook selected **stage 1** for `submission.csv`.
+- The notebook reports pooled CV MAP@5 of 0.8475 (stage 1) → 0.8494 (stage 2), but the hard-CV regression prevented stage 2 from being selected.
+
+**What worked / what did NOT work**
+- Viewpoint-specific prototypes and coverage features were retained in the species-specific V4 stage 1.
+- Transductive stage 2 improved rand CV but failed the hard-CV gate; do not treat its pooled gain alone as sufficient evidence.
+
+**Left open**
+- Test whether the per-species viewpoint strategy generalises to the test set; Kaggle score was not recorded in the supplied log/notebook.
+
+---
+
+### Sub 9: v6 = test-calibrated validation + new-share correction (TBD, 25-11): LB not recorded
+
+**Notebook / git tag:** `submission9_25_11.ipynb` / tag to be added  
+**Based on:** V4 pipeline, with validation redesigned following the audit of the earlier CV
+
+**What it does**
+- Replaces random/hard training validation with **test-like open-set folds**: whole new identities are held out, while known identities are split by burst clusters so near-duplicate encounters do not leak across gallery and validation.
+- Uses three CV seeds; caps held-out new-identity size at 120 and targets a **0.30 new-individual share** (`PI_NEW=0.30`).
+- Keeps the former hard split only as an evaluation-only stress test; it is not used to train the models.
+- Estimates the test new-identity share from feature distributions and applies a conservative prior-shift correction (`PRIOR_SHIFT="auto"`) when the mixture fit is sufficiently good.
+- Retains the V4 two-stage pipeline and selects stage 2 when it improves on every test-like seed.
+
+**What changed vs the previous submission and why**
+- The earlier random folds leaked near-duplicate images, while the previous hard folds were substantially harder than the inferred test distribution. The new burst-grouped folds aim to match test similarity statistics more closely.
+- The new-identity share is controlled per species/fold instead of varying widely with the sampled identities. The 0.30 target follows the feature-only estimate of the test new share (~0.28–0.30).
+
+**CV results**
+- Test-like CV MAP@5: stage 1 0.9112 → stage 2 0.9145 (mean over three seeds).
+- Stage 2 gains: s0 +0.0044, s1 +0.0028, s2 +0.0027; it was selected.
+- Stress-only MAP@5: stage 1 0.7410, stage 2 0.7359. The stress split remains a lower-bound diagnostic, not the model-selection scheme.
+
+**What worked / what did NOT work**
+- The test-like validation and controlled new share provide a more representative basis for model selection than the previous random/hard mixture.
+- Stage 2 clears the gain threshold on all three test-like seeds, but loses on the deliberately difficult stress split.
+
+**Left open**
+- Public LB score was not present in the supplied notebook; record it if available before comparing this submission with later ones.
+
+---
+
+### Sub 11: v7 = flank-coverage features (TBD, 26-11): LB 0.86063
+
+**Notebook / git tag:** `submission11_26_11.ipynb` / tag to be added  
+**Based on:** Sub 9 (v6 test-calibrated pipeline)
+
+**What it does**
+- Adds **flank-level gallery coverage** for each candidate identity. Viewpoints are grouped into left, right, and other/front-back/unknown; the candidate table receives `gn_fl` (number of gallery images from the query's flank group) and `fl_frac` (that count divided by the identity's gallery size).
+- Adds these flank-coverage values to the learned identity-ranker features, alongside the existing exact-viewpoint coverage (`gn_vp`).
+- Keeps the v6 test-like burst-grouped CV, 0.30 new-identity target, prior-shift correction, and two-stage transductive pipeline.
+
+**What changed vs the previous submission and why**
+- Exact viewpoint counts can be sparse. Grouping viewpoints by flank gives the ranker a coarser signal about whether a candidate identity is represented from a compatible side, without assuming left- and right-flank images are interchangeable.
+
+**CV results**
+- Test-like CV MAP@5: stage 1 0.9122 → stage 2 0.9166 (mean over three seeds).
+- Stage 2 gains: s0 +0.0061, s1 +0.0030, s2 +0.0041; it was selected.
+- Stress-only MAP@5: stage 1 0.7502, stage 2 0.7484. Stage 2 still loses slightly on the stress split.
+
+**Kaggle result**
+- Public leaderboard MAP@5: **0.86063**.
+
+**Left open**
+- Check whether the flank-coverage gain is consistent by species and under a more conservative validation setup; the CV gain is modest and the public LB score is the key external result.
+
+---
+
+### Sub 12: v8 = score-normalised similarities + neighbour P(new) + 4 seeds (Nandika, 27-11): LB 0.86690 (+0.0063 vs Sub 11)
+
+**Notebook / git tag:** `submission12_26_11.ipynb` / `sub12-2026-11-27` (tag to be added)
+**Based on:** Sub 11 (same folds, same 3 seeds, same pair cache; every CV number is directly comparable with Sub 11)
+
+**What it does**
+- **Score normalisation (Z-norm / T-norm style), no labels and no new SIFT.** Every query-gallery similarity is also expressed (a) relative to the gallery image's own impostor cohort (mean/std of its 50 most similar gallery images of *other* identities, `COH_K=50`) and (b) relative to the query's own similarity distribution over the gallery; both in the PCA space and in the learned (WCCN) space (`z_gc_max`, `z_qc_max`, `z_gl_max`, `z_ql_max` and their query-relative `_rel` versions).
+- **Identity compactness:** `intra` (mean pairwise cosine inside the identity's gallery images, NaN for single-image identities) and `sc_vs_intra` = `sc_max - intra`.
+- Query-level maxima of the four normalised scores (`q_zgc_max`, `q_zqc_max`, `q_zgl_max`, `q_zql_max`) are added to the P(new) model.
+- **Neighbour P(new) in stage 2:** `nb_pnew_w` (similarity-weighted stage-1 P(new) of the query's nearest queries) and `nb_pnew_s` (mean over SIFT-verified neighbours, -1 if none), in both the identity ranker and the stage-2 P(new) model.
+- **LightGBM seeds 2 -> 4** in every tree ensemble (`LGB_SEEDS`).
+- Switches for ablation: `USE_ZNORM`, `USE_NBNEW`, `LGB_SEEDS`.
+
+**What changed vs the previous submission and why**
+- Raw cosine is not comparable across gallery images (hub images create false matches; tight and loose identities score differently), and the `new_individual` decision depends on exactly that. Stage 2 already passed neighbours' identity probabilities; their P(new) is the matching signal.
+
+**CV results (same folds / seeds as Sub 11)**
+
+| | Sub 11 | Sub 12 | Delta |
+|---|---|---|---|
+| Test-like, stage 1 | 0.9122 | 0.9133 | +0.0011 |
+| Test-like, stage 2 (**submitted**) | 0.9166 | **0.9210** | +0.0044 |
+| Stress, stage 1 | 0.7502 | 0.7525 | +0.0023 |
+| Stress, stage 2 | 0.7484 | 0.7541 | +0.0057 |
+
+- Stage 2 gains over stage 1: s0 +0.0087, s1 +0.0085, s2 +0.0060 (all > 0.002), stress +0.0015. Stage 2 selected.
+- Ladder (mean over 3 seeds): A 0.8611, B 0.8652, C 0.8662, D 0.8674, E 0.8932, F 0.9059, G 0.9097, H 0.9133, I 0.9210.
+- Per species (s0, stage 2): hyena 0.9023, leopard 0.9296 (all three seeds: hyena 0.902-0.917, leopard 0.918-0.930).
+
+**Kaggle result**
+- Public leaderboard MAP@5: **0.86690** (Sub 11: 0.86063, +0.0063). The public LB is 30% of test, so treat the size of the step with caution, but it moved in the same direction as CV (+0.0044).
+
+**What worked / what did NOT work**
+- Stage 2 carries the gain; stage 1 moved only +0.0011 (so the z-norm features alone are a small effect). The z features do appear in the held-out permutation importance (`z_gl_max_rel` 0.0008, `z_ql_max` 0.0006, `sc_vs_intra` 0.0004), but `v2_top2_rel` still dominates (0.0053).
+- **Not isolated:** z-norm vs neighbour P(new) vs 4 seeds are all mixed into the +0.0044. Run with `USE_ZNORM=0` / `USE_NBNEW=0` / `LGB_SEEDS=2` to separate them.
+- Prior-shift sensitivity is small (gain between -0.0005 and +0.0026 over test new-share 0.25-0.55), so the correction is not a real lever.
+- The pair cache was not present on this machine, so the full SIFT pass was recomputed (~40 min); total notebook ~50 min.
+
+**Diagnostics worth remembering**
+- Prior-shift (`auto`): estimated test new share hyena 0.29 (band 0.28-0.32), leopard 0.26 (band 0.25-0.29); used hyena 0.302 (CV prior), leopard 0.29.
+- Losses of the submitted model on s0 (1 - MAP = 0.0777): correct at rank 2-5 0.0202, outside top-5 0.0188, retrieval miss 0.0135, NEW above the true identity 0.0129, new matched to a known identity 0.0123. No single category dominates. Stress (0.2459): retrieval miss 0.0831, NEW above true 0.0725, rank 2-5 0.0477, outside top-5 0.0348.
+- Hyena known queries are the weakest slice (s0: 0.883 stage 1 / hyena 0.902 overall stage 2); new queries are ~0.95-0.96.
+- Recall ceiling for known queries: 98.1% / 98.2% / 97.7% (test-like seeds), 87.8% (stress).
+- **Test vs CV P(new):** mean predicted P(new) on test 0.342 (V3) / 0.348 (stage 1) / 0.370 (stage 2), vs 0.303 true share in CV and a feature-only estimate of 0.26-0.32. New@1 rate on test 40.9% (CV s0: 34.6%). The model calls more test images "new" than CV would suggest; not acted on.
+- Top-1 agreement with the V3 file on test: 92.4% (stage 2).
+
+**Left open / ideas for the next person**
+- Ablate the three additions (see above).
+- Ranking errors (rank 2-5, outside top-5) are still ~0.04 of the 0.078 CV loss; hyena known queries are the weakest slice.
+- Investigate the gap between predicted test P(new) (0.37) and the estimated test new share (0.26-0.32).
+
+**Reproducibility warning:** needs the SIFT `.npz` files and `best_config_v2.json`; `sift_pair_cache.npz` is rebuilt automatically if missing (~40 min first run). `DATA_DIR` can be set by environment variable.
+
+---
+
 ## 3. What has been tried (don't redo / don't undo)
 
 | Idea | Result | Where |
@@ -263,29 +404,14 @@ Pooled rand+hard MAP@5: s1 0.8426, s2 0.8464, s1x 0.8477, **s2x 0.8508**, fuse_x
 | Probability fusion of V4 / extra-SIFT stages | Best pooled CV (0.8519) but −0.0015 rand vs s2x, rejected by the both-schemes gate | Sub 7 |
 | 4 LightGBM seeds instead of 2 | Not isolated | Sub 7 |
 | Burst-grouped CV | Started in Sub 1, never finished; replaced by hard folds | Sub 1/4 |
+| Per-species viewpoint prototypes / coverage features | Added viewpoint-specific prototypes and coverage features; CV chose pooled hyena and separate leopard models | Sub 8 |
+| Test-like burst-grouped CV + controlled new share (`PI_NEW=0.30`) | Replaces the rand/hard training mix; stage 2 improves all three test-like seeds, while stress remains evaluation-only | Sub 9 |
+| Flank-level gallery coverage (`gn_fl`, `fl_frac`) | Added as identity-ranker evidence on top of exact-viewpoint coverage; stage 2 test-like CV mean 0.9166, public LB 0.86063 | Sub 11 |
+| Score normalisation (impostor-cohort Z-norm + query T-norm, PCA and learned space), identity `intra`, neighbour P(new) in stage 2, 4 LGBM seeds | Stage 1 +0.0011, stage 2 +0.0044 test-like CV (0.9210), stress +0.0057; public LB 0.86690 (+0.0063). Contribution of each part not isolated | Sub 12 |
 
 ---
 
-## 4. Possible next approaches
-
-Ordered roughly by expected value per effort. Test each on **both** rand and hard CV before submitting. These are suggestions; confirm any rule-sensitive ones with the TA.
-
-1. **Fix the candidate-recall regression (cheap, no new SIFT).** `TOP_ID=30` / `TOP_L=10` cap what the learned model can see; recall ceiling dropped vs Sub 3. Try `TOP_ID` 60–100, `TOP_L` 20. **Done in Sub 7 (`TOP_ID` 80, `TOP_L` 20):** hard-CV recall kept rose 87.5% → 93.2% but MAP did not move, because the recovered identities are not ranked into the top 5. Retrieval is no longer the bottleneck; don't spend more time here.
-2. **Re-tune the projection.** α=0.1 is at the edge of the grid for both species, and hyena's accuracy was still rising as α shrank (0.8612 → 0.8889). α ∈ {0.05, 0.02, 0.01} was tried in Sub 6 and gave almost nothing. Still to try: LDA as a projection, PCA dim 256 / 768, and partial whitening (power < 1), since full whitening hurt on hard CV.
-3. **Strengthen the SIFT evidence** (the most robust signal so far). **Partly done in Sub 7:** RootSIFT, ratio 0.85, strict-ratio inliers, inlier coverage and transform stats (+0.003 rand / +0.007 hard; coverage itself was weak). Still to try: more RANSAC iterations, full affine or homography as an extra channel, inlier count normalised by keypoint count, and a second RANSAC pass.
-4. **Ranking objective.** Swap the binary GBM classifier for a LightGBM `lambdarank` ranker grouped per query (directly optimises ranking). Keep the P(new) model separate.
-5. **New-individual handling** (≈0.035 of MAP lost on rand, ≈0.06 on hard):
-   - Reuse Sub 1's mixture-fit to estimate the real test new-share and compare with CV's 40%; if far off, re-weight or re-tune `NEW_QUERY_FRAC`.
-   - Cluster test queries into groups with SIFT-verified query-query edges (graph / connected-components clustering is allowed). The statement says the same new individual can appear in several test images, so group members should get consistent decisions.
-   - Hypothesis for why stage 2 failed on hard CV: CV folds have ~1,430 queries vs 2,791 in test, so neighbour structure differs. Try CV with fewer folds (bigger query sets) or subsampling test to fold size for the neighbour features.
-6. **Hyena-specific tuning.** Hyena is clearly weaker on hard CV. Try per-species values of k1/k2, α, TOP_ID and separate models per species.
-7. **Cheap ensemble.** V3 and V4-s1 disagree on top-1 for ~7% of test queries. **Tried in Sub 7:** probability fusion of the V4 and extra-SIFT stages gave the best pooled CV (0.8519) but lost on rand, so it was not adopted; the 4-seed LightGBM bagging was not isolated. Not a likely source of a big gain.
-8. **Small learned embedding (higher effort, medium risk).** An MLP from scratch on the 2152-d features (≤1M params total) used as an additional similarity channel. Only worth it if 1–7 plateau.
-9. **Pseudo-labelling confident test queries into the gallery.** Same spirit as the transductive re-ranking we already use, but check with the TA first since it isn't spelled out in the Problem 3 rules.
-
----
-
-## 6. Template: copy this for every new submission
+## 4. Template: copy this for every new submission
 
 ```markdown
 ### Sub N: <short name> (<your name>, <dd-mm>): LB <score> (<Δ vs previous>)
